@@ -1,3 +1,4 @@
+res.json({ message: "CI/CD SUCCESS - Updated from GitHub 🚀" });
 const express = require("express");
 const cors = require("cors");
 
