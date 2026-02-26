@@ -1,0 +1,31 @@
+services:
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    image: nitesh2939/mean-backend:latest
+    container_name: backend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/dd_db
+
+  frontend:
+    image: nitesh2939/mean-frontend:latest
+    container_name: frontend
+    restart: always
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
